@@ -39,6 +39,15 @@ resource "helm_release" "argocd" {
   version    = "7.7.10"
   namespace  = var.argocd_namespace
 
+  set {
+    name  = "crds.install"
+    value = true
+  }
+
+  wait    = true
+  timeout = 600
+  atomic  = true
+
   values = [
     yamlencode({
       server = {
