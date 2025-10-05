@@ -70,9 +70,15 @@ resource "helm_release" "argocd" {
   ]
 }
 
-# 4) Argo CD Application for http-echo
+# 4) Wait for Argo CD CRDs to be established after Helm install
+resource "time_sleep" "wait_for_argocd_crds" {
+  depends_on      = [helm_release.argocd]
+  create_duration = "45s"
+}
+
+# 5) Argo CD Application for http-echo
 resource "kubernetes_manifest" "argocd_app_http_echo" {
-  depends_on = [helm_release.argocd]
+  depends_on = [time_sleep.wait_for_argocd_crds]
 
   manifest = {
     apiVersion = "argoproj.io/v1alpha1"
