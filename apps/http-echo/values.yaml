@@ -1,0 +1,33 @@
+replicaCount: 2
+
+image:
+  repository: hashicorp/http-echo
+  tag: "0.2.3"
+  pullPolicy: IfNotPresent
+
+args:
+  - "-text=Hello from ArgoCD + Helm + Terraform 🎉"
+  - "-listen=:5678"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 5678
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: echo.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []   # add TLS later if you want
