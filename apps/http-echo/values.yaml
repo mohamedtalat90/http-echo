@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 args:
-  - "-text=Hello from ArgoCD + Helm + Terraform 🎉"
+  - "-text=Hello from ArgoCD + Helm + Terraform 🎉🎉"
   - "-listen=:5678"
 
 service:
