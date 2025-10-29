@@ -51,7 +51,7 @@ resource "helm_release" "argocd" {
   values = [
     yamlencode({
       server = {
-        service = { type = "ClusterIP" }
+        service = { type = "ClusterIP", servicePort = 80  }
         ingress = {
           enabled           = true
           ingressClassName  = "nginx"
@@ -69,6 +69,9 @@ resource "helm_release" "argocd" {
     })
   ]
 }
+# Add 127.0.0.1 argocd.local to your /etc/hosts (or use your node IP).
+# Open http://argocd.local/.
+
 # 4) Wait for Argo CD CRDs to be established after Helm install
 # resource "time_sleep" "wait_for_argocd_crds" {
 #   depends_on      = [helm_release.argocd]
