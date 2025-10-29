@@ -56,15 +56,17 @@ resource "helm_release" "argocd" {
           enabled           = true
           ingressClassName  = "nginx"
           # Expose the UI at https://argocd.local
-          hosts = [{
-            host  = "argocd.local"
-            paths = [{ path = "/", pathType = "Prefix" }]
-          }]
-          tls = [] # keep http for demo; you can add TLS later
-        }
+          hosts            = ["argocd.local"]
+          paths            = ["/"]
+          pathType         = "Prefix"
+          # helpful for nginx:
+          annotations = {
+            "nginx.ingress.kubernetes.io/backend-protocol" = "HTTP"
+          }
       }
       configs = {
         params = { "server.insecure" = true } # ok for demo
+      }
       }
     })
   ]
