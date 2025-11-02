@@ -50,10 +50,13 @@ resource "helm_release" "argocd" {
 
   values = [
     yamlencode({
+      global = {
+        domain = "argocd.local"
+      }
       server = {
         service = { type = "ClusterIP", servicePort = 80  }
         ingress = {
-          enabled           = false
+          enabled           = true
           ingressClassName  = "nginx"
           # Expose the UI at https://argocd.local
           hosts            = ["argocd.local"]
