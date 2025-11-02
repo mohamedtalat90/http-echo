@@ -53,7 +53,7 @@ resource "helm_release" "argocd" {
       server = {
         service = { type = "ClusterIP", servicePort = 80  }
         ingress = {
-          enabled           = true
+          enabled           = false
           ingressClassName  = "nginx"
           # Expose the UI at https://argocd.local
           hosts            = ["argocd.local"]
