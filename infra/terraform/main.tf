@@ -54,7 +54,7 @@ resource "helm_release" "argocd" {
         domain = "argocd.local"
       }
       server = {
-        service = { type = "ClusterIP", servicePort = 80  }
+        service = { type = "ClusterIP"}
         ingress = {
           enabled           = true
           ingressClassName  = "nginx"
@@ -68,7 +68,9 @@ resource "helm_release" "argocd" {
           }
       }
       configs = {
-        params = { "server.insecure" = true } # ok for demo
+        params = { 
+          "server.insecure" = true # ok for demo
+        }
       }
       }
     })
