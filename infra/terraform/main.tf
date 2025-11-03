@@ -65,7 +65,6 @@ resource "helm_release" "argocd" {
           # Use HTTP backend and port 80
           annotations = {
             "nginx.ingress.kubernetes.io/backend-protocol" = "HTTP"
-            "nginx.ingress.kubernetes.io/ssl-redirect"      = "false"
           }
       }
       configs = {
