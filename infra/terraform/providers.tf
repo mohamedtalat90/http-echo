@@ -1,6 +1,10 @@
 terraform {
   required_version = ">= 1.5.0"
   required_providers {
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = "~> 1.48" 
+    }
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "~> 2.33"
@@ -9,21 +13,20 @@ terraform {
       source  = "hashicorp/helm"
       version = "~> 2.13"
     }
-    time = {
-      source  = "hashicorp/time"
-      version = "~> 0.11"
-    }
+
   }
 }
 
+provider "hcloud" {
+  token = var.hcloud_token
+}
+
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
-  config_context = "k3d-demo"  
+  config_path    = var.kubeconfig_path
 }
 
 provider "helm" {
   kubernetes {
-        config_path    = "~/.kube/config"
-        config_context = "k3d-demo"
+        config_path    = var.kubeconfig_path
   }
 }
