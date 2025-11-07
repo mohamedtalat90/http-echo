@@ -26,7 +26,7 @@ ingress:
   enabled: true
   className: "nginx"
   hosts:
-    - host: echo.local
+    - host: echo.116.203.226.140.sslip.io
       paths:
         - path: /
           pathType: Prefix
