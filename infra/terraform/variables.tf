@@ -22,7 +22,7 @@ variable "image" {
 }
 variable "hostname" {
   type    = string
-  default = "k3s-node-1"
+  default = "k3s-server"
 }
 
 # Kubeconfig path on YOUR laptop (where terraform runs)
