@@ -1,41 +1,41 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: argocd
-#   namespace: argocd
-# spec:
-#   project: default
-#   source:
-#     repoURL: https://argoproj.github.io/argo-helm
-#     chart: argo-cd
-#     targetRevision: 7.7.10
-#     helm:
-#       values: |
-#         global:
-#           domain: argocd.116.203.226.140.sslip.io
-#         server:
-#           service:
-#             type: ClusterIP
-#           ingress:
-#             enabled: true
-#             ingressClassName: nginx
-#             hosts:
-#               - argocd.116.203.226.140.sslip.io
-#             paths:
-#               - /
-#             pathType: Prefix
-#             annotations:
-#               nginx.ingress.kubernetes.io/backend-protocol: HTTP
-#         configs:
-#           params:
-#             server.insecure: true
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: argocd
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-cd
+    targetRevision: 9.1.1
+    helm:
+      values: |
+        global:
+          domain: argocd.116.203.226.140.sslip.io
+        server:
+          service:
+            type: ClusterIP
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+            hosts:
+              - argocd.116.203.226.140.sslip.io
+            paths:
+              - /
+            pathType: Prefix
+            annotations:
+              nginx.ingress.kubernetes.io/backend-protocol: HTTP
+        configs:
+          params:
+            server.insecure: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 
