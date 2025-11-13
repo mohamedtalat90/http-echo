@@ -1,24 +1,24 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: http-echo
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/mohamedtalat90/http-echo.git
-    targetRevision: main
-    path: helm/http-echo
-    helm:
-      valueFiles:
-        - values.yaml
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: http-echo
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: http-echo
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/mohamedtalat90/http-echo.git
+#     targetRevision: main
+#     path: helm/http-echo
+#     helm:
+#       valueFiles:
+#         - values.yaml
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: http-echo
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
 
