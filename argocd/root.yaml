@@ -1,20 +1,20 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: root
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: git@github.com:mohamedtalat90/http-echo.git
-    path: argocd
-    targetRevision: HEAD
-    directory:
-      recurse: true
-      jsonnet: {}
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
-  syncPolicy:
-    automated:
-      enabled: true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: root
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: git@github.com:mohamedtalat90/http-echo.git
+#     path: argocd
+#     targetRevision: HEAD
+#     directory:
+#       recurse: true
+#       jsonnet: {}
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: argocd
+#   syncPolicy:
+#     automated:
+#       enabled: true
